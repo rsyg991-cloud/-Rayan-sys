@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
-import { format, differenceInDays } from 'date-fns';
+import { format } from 'date-fns';
 import { ar } from 'date-fns/locale';
 import { EmptyState } from '../shared/EmptyState';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -30,7 +30,7 @@ type DeadlineFormData = z.infer<typeof deadlineSchema>;
 
 const DeadlineCard = ({ deadline, onDelete }: { deadline: Deadline; onDelete: (id: string) => void }) => {
   const countdown = useCountdown(deadline.dueDate);
-  const daysLeft = differenceInDays(new Date(deadline.dueDate), new Date());
+  const daysLeft = countdown.days;
 
   const cardColor =
     countdown.isPast ? 'bg-destructive/10 border-destructive/30' :
@@ -49,6 +49,14 @@ const DeadlineCard = ({ deadline, onDelete }: { deadline: Deadline; onDelete: (i
     return types[type];
   }
 
+  const formatDaysLeft = (days: number) => {
+    if (days === 1) return "متبقي يوم واحد";
+    if (days === 2) return "متبقي يومان";
+    if (days >= 3 && days <= 10) return `متبقي ${days} أيام`;
+    if (days > 10) return `متبقي ${days} يوم`;
+    return "اليوم";
+  };
+
   return (
     <motion.div
       layout
@@ -65,7 +73,7 @@ const DeadlineCard = ({ deadline, onDelete }: { deadline: Deadline; onDelete: (i
             <p className="font-bold text-destructive">انتهى الوقت!</p>
         ) : (
             <p className="font-mono font-bold text-sm tracking-wider">
-                {`${countdown.days}ي ${countdown.hours}س ${countdown.minutes}د ${countdown.seconds}ث`}
+                {formatDaysLeft(daysLeft)}
             </p>
         )}
       </div>
