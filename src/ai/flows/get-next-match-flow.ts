@@ -28,7 +28,7 @@ const nextMatchPrompt = ai.definePrompt({
 
 The current date is {{currentDate}}. Find the first official match scheduled to occur after this date. This could be a league match, cup match, or friendly. Look for the next available match, even if it is weeks or months away (e.g., the start of the new season).
 
-Use the most up-to-date information available from reliable sports sources, prioritizing information from official club social media accounts, like their Twitter page, to ensure accuracy.
+Use the most up-to-date information available from reliable sports sources, such as the club's official Twitter account, to ensure accuracy. The user has indicated the next match is against "Al-Ittihad", so please verify this information and provide the correct match details.
 
 The result must be in the specified JSON format.
 - All text strings (opponent, competition) must be in Arabic.
