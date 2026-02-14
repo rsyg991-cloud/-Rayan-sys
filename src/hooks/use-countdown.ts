@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from 'react';
-import { intervalToDuration, isPast } from 'date-fns';
+import { differenceInCalendarDays } from 'date-fns';
 
 export const useCountdown = (targetDate: Date | string) => {
   const [countdown, setCountdown] = useState({
@@ -12,34 +12,27 @@ export const useCountdown = (targetDate: Date | string) => {
   });
 
   useEffect(() => {
-    // This effect should only run on the client
     if (typeof window === 'undefined') return;
 
     const date = new Date(targetDate);
-    if (isPast(date)) {
-      setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true });
-      return;
-    }
 
     const updateCountdown = () => {
-      const now = new Date();
-      if(isPast(date)) {
-        setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true });
-        clearInterval(interval);
-        return;
-      }
-      const duration = intervalToDuration({ start: now, end: date });
+      const today = new Date();
+      const daysLeft = differenceInCalendarDays(date, today);
+
       setCountdown({
-        days: duration.days ?? 0,
-        hours: duration.hours ?? 0,
-        minutes: duration.minutes ?? 0,
-        seconds: duration.seconds ?? 0,
-        isPast: false
+        days: daysLeft >= 0 ? daysLeft : 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        isPast: daysLeft < 0
       });
     };
     
     updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
+    // We only care about days, so updating once a minute is sufficient
+    // to catch the date change at midnight.
+    const interval = setInterval(updateCountdown, 60000); 
 
     return () => clearInterval(interval);
   }, [targetDate]);
