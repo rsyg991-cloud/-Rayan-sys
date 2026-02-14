@@ -11,10 +11,14 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 const initialHabits: Habit[] = [
+  { id: 'fajr', name: 'صلاة الفجر', completedDates: [] },
+  { id: 'athkar', name: 'أذكار الصباح والمساء', completedDates: [] },
+  { id: 'duha', name: 'صلاة الضحى', completedDates: [] },
+  { id: 'rawateb', name: 'السنن الرواتب', completedDates: [] },
+  { id: 'witr', name: 'الوتر', completedDates: [] },
+  { id: 'quran', name: 'قراءة القرآن', completedDates: [] },
   { id: 'gym', name: 'الذهاب إلى النادي', completedDates: [] },
   { id: 'read', name: 'قراءة كتاب', completedDates: [] },
-  { id: 'meditate', name: 'التأمل', completedDates: [] },
-  { id: 'code', name: 'البرمجة لمدة ساعة', completedDates: [] },
 ];
 
 const HabitItem = ({ habit, onUpdate }: { habit: Habit; onUpdate: (id: string) => void }) => {
@@ -86,7 +90,7 @@ const HabitItem = ({ habit, onUpdate }: { habit: Habit; onUpdate: (id: string) =
 };
 
 export default function HabitTracker() {
-  const [habits, setHabits] = useLocalStorage<Habit[]>('habits_v2', initialHabits);
+  const [habits, setHabits] = useLocalStorage<Habit[]>('habits_v3', initialHabits);
 
   const updateHabit = (id: string) => {
     setHabits(habits.map(habit => {
