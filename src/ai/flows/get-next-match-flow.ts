@@ -20,21 +20,16 @@ const nextMatchPrompt = ai.definePrompt({
     name: 'alHilalNextMatchPrompt',
     input: { schema: z.void() },
     output: { schema: NextMatchOutputSchema },
-    prompt: `You are a world-class sports data analyst. Your primary task is to provide the details of the *next confirmed, official match* for the Al-Hilal Saudi Football Club.
+    prompt: `You are a sports data expert specializing in Saudi football. Your goal is to provide details for the next official match of Al-Hilal Saudi FC.
 
-Accuracy is paramount. You must base your answer on real-time, verifiable information from major sports news outlets (like ESPN, BBC Sports, or regional equivalents). Do not use your internal knowledge without verification, as schedules change frequently.
-
-Your process should be:
-1. Search for Al-Hilal FC's upcoming official matches.
-2. Identify the very next one on the schedule.
-3. Verify the opponent, competition, and date/time from at least two reliable sources.
+Your priority is accuracy. Try to use up-to-date information from reliable sports sources to get the most current details, as schedules can change.
 
 The result must be in the specified JSON format.
 - All text strings (opponent, competition) must be in Arabic.
 - The match date must be a single UTC ISO 8601 string.
 - Generate a unique ID for the match.
 
-If you cannot find a confirmed, upcoming official match, or if there is conflicting information, you MUST return null. Do not provide speculative or unconfirmed match data.`,
+If, after trying your best, you cannot find a *confirmed* upcoming official match, it is acceptable to return null. Do not provide speculative or unconfirmed match data.`,
 });
 
 
