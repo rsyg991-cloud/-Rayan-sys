@@ -6,6 +6,7 @@
  */
 
 import { ai } from '@/ai/genkit';
+import { googleAI } from '@genkit-ai/google-genai';
 import { z } from 'zod';
 import type { Match } from '@/lib/types';
 
@@ -22,7 +23,7 @@ const NextMatchOutputSchema = z.object({
 
 const nextMatchPrompt = ai.definePrompt({
     name: 'alHilalNextMatchPrompt',
-    model: 'googleai/gemini-1.5-flash',
+    model: googleAI.model('gemini-1.5-flash'),
     input: { schema: NextMatchInputSchema },
     output: { schema: NextMatchOutputSchema },
     prompt: `You are a sports data expert for Saudi football. Your task is to provide the details for the very next official match of Al-Hilal Saudi FC.

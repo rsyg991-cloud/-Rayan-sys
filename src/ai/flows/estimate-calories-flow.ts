@@ -8,7 +8,8 @@
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import { googleAI } from '@genkit-ai/google-genai';
+import {z} from 'zod';
 
 const EstimateCaloriesInputSchema = z.object({
   photoDataUri: z
@@ -31,7 +32,7 @@ export async function estimateCalories(input: EstimateCaloriesInput): Promise<Es
 
 const prompt = ai.definePrompt({
   name: 'estimateCaloriesPrompt',
-  model: 'googleai/gemini-pro-vision',
+  model: googleAI.model('gemini-pro-vision'),
   input: {schema: EstimateCaloriesInputSchema},
   output: {schema: EstimateCaloriesOutputSchema},
   prompt: `You are an expert nutritionist. Analyze the image of the meal provided and identify all the food items.
