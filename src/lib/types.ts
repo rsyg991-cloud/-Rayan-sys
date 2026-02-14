@@ -16,8 +16,7 @@ export interface Deadline {
 export interface Habit {
   id: string;
   name: string;
-  streak: number;
-  lastCompleted: string | null; // ISO date string
+  completedDates: string[]; // ISO date strings
 }
 
 export interface WeightEntry {
