@@ -241,7 +241,7 @@ export default function HealthTracker() {
                                 content={
                                     <ChartTooltipContent
                                         labelFormatter={(label) => format(new Date(label), 'eeee, d MMMM', { locale: ar })}
-                                        formatter={(value: number) => [`${value.toFixed(1)} كجم`, "الوزن"]}
+                                        formatter={(value: any) => [`${Number(value).toFixed(1)} كجم`, "الوزن"]}
                                         indicator="dot"
                                     />
                                 }
