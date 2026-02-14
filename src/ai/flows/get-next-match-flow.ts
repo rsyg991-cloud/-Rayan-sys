@@ -6,6 +6,7 @@
  */
 
 import { ai } from '@/ai/genkit';
+import { googleAI } from '@genkit-ai/google-genai';
 import { z } from 'zod';
 import type { Match } from '@/lib/types';
 
@@ -22,14 +23,14 @@ const NextMatchOutputSchema = z.object({
 
 const nextMatchPrompt = ai.definePrompt({
     name: 'alHilalNextMatchPrompt',
-    model: 'googleai/gemini-1.5-flash',
+    model: googleAI.model('gemini-1.5-flash'),
     input: { schema: NextMatchInputSchema },
     output: { schema: NextMatchOutputSchema },
     prompt: `You are a sports data expert for Saudi football. Your task is to provide the details for the very next official match of Al-Hilal Saudi FC.
 
 The current date is {{currentDate}}. Find the first official match scheduled to occur after this date. This could be a league match, cup match, or friendly. Look for the next available match, even if it is weeks or months away (e.g., the start of the new season).
 
-Use the most up-to-date information available from reliable sports sources, such as the club's official Twitter account, to ensure accuracy. The user has indicated the next match is against "Al-Ittihad", so please verify this information and provide the correct match details.
+Use the most up-to-date information available from reliable sports sources, like the club's official social media accounts (e.g. on Twitter/X) or 365Scores, to ensure accuracy. The user has indicated the next match is against "Al-Ittihad", so please verify this information and provide the correct match details.
 
 The result must be in the specified JSON format.
 - All text strings (opponent, competition) must be in Arabic.
