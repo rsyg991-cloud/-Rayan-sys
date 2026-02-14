@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 
 export default function DateTimeWidget() {
   const [time, setTime] = useState('');
-  const [gregorianDate, setGregorianDate] = useState('');
   const [hijriDate, setHijriDate] = useState('');
 
   useEffect(() => {
@@ -16,15 +15,6 @@ export default function DateTimeWidget() {
         hour: 'numeric',
         minute: 'numeric',
         hour12: true,
-      }).format(now));
-
-      // Gregorian Date with English numerals
-      setGregorianDate(new Intl.DateTimeFormat('ar-SA', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        numberingSystem: 'latn',
       }).format(now));
 
       // Hijri Date with English numerals
@@ -44,11 +34,7 @@ export default function DateTimeWidget() {
 
   return (
     <div className="bg-card/70 backdrop-blur-sm border border-white/10 shadow-lg rounded-xl p-6 mb-8 text-center">
-      <div className="flex flex-col sm:flex-row justify-around items-center gap-4">
-        <div className="text-primary">
-          <p className="text-lg font-semibold">التاريخ الميلادي</p>
-          <p className="text-xl font-bold">{gregorianDate || '...'}</p>
-        </div>
+      <div className="flex flex-col sm:flex-row justify-evenly items-center gap-4">
         <div className="text-accent">
           <p className="text-3xl sm:text-5xl font-bold font-mono">{time || '...'}</p>
         </div>

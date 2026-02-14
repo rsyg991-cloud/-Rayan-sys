@@ -11,6 +11,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { format } from 'date-fns';
 import { ar } from 'date-fns/locale';
 import { EmptyState } from '../shared/EmptyState';
+import { cn } from '@/lib/utils';
 import {
   ChartContainer,
   ChartTooltip,
@@ -40,12 +41,25 @@ export default function HealthTracker() {
   
   const currentWeight = currentWeightEntry?.weight ?? healthInfo.initialWeight;
 
-  const bmi = useMemo(() => {
+  const { bmi, bmiColor } = useMemo(() => {
     if (healthInfo.height > 0 && currentWeight > 0) {
       const heightInMeters = healthInfo.height / 100;
-      return (currentWeight / (heightInMeters * heightInMeters)).toFixed(1);
+      const bmiValue = currentWeight / (heightInMeters * heightInMeters);
+      
+      let color = '';
+      if (bmiValue < 18.5) {
+        color = 'text-chart-4'; // Underweight - Yellow
+      } else if (bmiValue >= 18.5 && bmiValue < 25) {
+        color = 'text-primary'; // Normal - Greenish
+      } else if (bmiValue >= 25 && bmiValue < 30) {
+        color = 'text-chart-5'; // Overweight - Orange
+      } else {
+        color = 'text-destructive'; // Obese - Red
+      }
+      
+      return { bmi: bmiValue.toFixed(1), bmiColor: color };
     }
-    return 'N/A';
+    return { bmi: 'N/A', bmiColor: 'text-muted-foreground' };
   }, [currentWeight, healthInfo.height]);
   
   const progress = useMemo(() => {
@@ -171,7 +185,7 @@ export default function HealthTracker() {
                 </div>
                 <div>
                     <p className="text-sm text-muted-foreground">مؤشر كتلة الجسم</p>
-                    <p className="text-2xl font-bold">{bmi}</p>
+                    <p className={cn("text-2xl font-bold", bmiColor)}>{bmi}</p>
                 </div>
             </div>
             {currentWeight > 0 && (
