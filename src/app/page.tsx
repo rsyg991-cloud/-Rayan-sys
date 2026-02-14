@@ -1,8 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import AcademicTasks from '@/components/features/university/AcademicTasks';
 import DeadlineTracker from '@/components/features/university/DeadlineTracker';
 import HabitTracker from '@/components/features/life/HabitTracker';
-import PersonalTasks from '@/components/features/life/PersonalTasks';
 import HealthTracker from '@/components/features/life/HealthTracker';
 import DateTimeWidget from "@/components/features/shared/DateTimeWidget";
 import { Header } from "@/components/features/shared/Header";
@@ -23,9 +21,8 @@ export default function Home() {
             <TabsTrigger value="life">🏠 الحياة الشخصية</TabsTrigger>
           </TabsList>
           <TabsContent value="university" className="mt-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+            <div className="max-w-2xl mx-auto grid grid-cols-1 gap-6">
                 <DeadlineTracker />
-                <AcademicTasks />
             </div>
           </TabsContent>
           <TabsContent value="planning" className="mt-6">
@@ -40,9 +37,8 @@ export default function Home() {
              </div>
           </TabsContent>
           <TabsContent value="life" className="mt-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+            <div className="max-w-2xl mx-auto grid grid-cols-1 gap-6">
                 <HabitTracker />
-                <PersonalTasks />
             </div>
           </TabsContent>
         </Tabs>
