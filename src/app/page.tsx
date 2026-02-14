@@ -5,16 +5,18 @@ import HabitTracker from '@/components/features/life/HabitTracker';
 import PersonalTasks from '@/components/features/life/PersonalTasks';
 import HealthTracker from '@/components/features/life/HealthTracker';
 import CalorieEstimator from "@/components/features/life/CalorieEstimator";
+import NextMatch from "@/components/features/entertainment/NextMatch";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto pt-8">
         <Tabs defaultValue="university" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 h-14 text-lg">
+          <TabsList className="grid w-full grid-cols-4 h-14 text-lg">
             <TabsTrigger value="university">🎓 الجامعة</TabsTrigger>
             <TabsTrigger value="health">❤️ الصحة</TabsTrigger>
             <TabsTrigger value="life">🏠 الحياة الشخصية</TabsTrigger>
+            <TabsTrigger value="entertainment">⚽️ الترفيه</TabsTrigger>
           </TabsList>
           <TabsContent value="university" className="mt-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
@@ -32,6 +34,11 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
                 <HabitTracker />
                 <PersonalTasks />
+            </div>
+          </TabsContent>
+          <TabsContent value="entertainment" className="mt-6">
+            <div className="max-w-md mx-auto grid grid-cols-1 gap-6">
+                <NextMatch />
             </div>
           </TabsContent>
         </Tabs>
