@@ -4,6 +4,7 @@ import DeadlineTracker from '@/components/features/university/DeadlineTracker';
 import HabitTracker from '@/components/features/life/HabitTracker';
 import PersonalTasks from '@/components/features/life/PersonalTasks';
 import HealthTracker from '@/components/features/life/HealthTracker';
+import CalorieEstimator from "@/components/features/life/CalorieEstimator";
 
 export default function Home() {
   return (
@@ -22,8 +23,9 @@ export default function Home() {
             </div>
           </TabsContent>
           <TabsContent value="health" className="mt-6">
-             <div className="max-w-2xl mx-auto">
+             <div className="max-w-2xl mx-auto grid grid-cols-1 gap-6">
                 <HealthTracker />
+                <CalorieEstimator />
              </div>
           </TabsContent>
           <TabsContent value="life" className="mt-6">
