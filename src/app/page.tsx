@@ -4,11 +4,13 @@ import DeadlineTracker from '@/components/features/university/DeadlineTracker';
 import HabitTracker from '@/components/features/life/HabitTracker';
 import PersonalTasks from '@/components/features/life/PersonalTasks';
 import HealthTracker from '@/components/features/life/HealthTracker';
+import DateTimeWidget from "@/components/features/shared/DateTimeWidget";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto pt-8">
+        <DateTimeWidget />
         <Tabs defaultValue="university" className="w-full">
           <TabsList className="grid w-full grid-cols-3 h-14 text-lg">
             <TabsTrigger value="university">🎓 الجامعة</TabsTrigger>
