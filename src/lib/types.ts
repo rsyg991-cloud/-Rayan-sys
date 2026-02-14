@@ -30,3 +30,10 @@ export interface HealthInfo {
   targetWeight: number; // in kg
   history: WeightEntry[];
 }
+
+export interface Goal {
+  id: string;
+  text: string;
+  completed: boolean;
+  targetDate?: string;
+}
