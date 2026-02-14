@@ -3,52 +3,49 @@
 import { useState, useEffect, useCallback } from 'react';
 
 function useLocalStorage<T>(key: string, initialValue: T) {
-  const [value, setValue] = useState<T>(initialValue);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const [storedValue, setStoredValue] = useState<T>(initialValue);
 
   useEffect(() => {
-    // This effect runs once on the client to get the initial value from localStorage.
-    if (typeof window !== 'undefined') {
-      try {
-        const item = window.localStorage.getItem(key);
-        if (item) {
-          setValue(JSON.parse(item));
-        }
-      } catch (error) {
-        console.error(`Error reading localStorage key “${key}”:`, error);
-        setValue(initialValue);
-      } finally {
-        setIsInitialized(true);
-      }
+    // On mount, read from localStorage and update state.
+    // This runs only on the client.
+    if (typeof window === "undefined") {
+      return;
     }
-  }, [key, initialValue]);
+    try {
+      const item = window.localStorage.getItem(key);
+      if (item) {
+        setStoredValue(JSON.parse(item));
+      }
+    } catch (error) {
+      console.error(`Error reading localStorage key “${key}”:`, error);
+    }
+  }, [key]);
 
-  const setStoredValue = useCallback((newValue: T | ((val: T) => T)) => {
-    if (typeof window !== 'undefined') {
+  const setValue = useCallback(
+    (value: T | ((val: T) => T)) => {
+      if (typeof window === "undefined") {
+        console.warn(
+          `Tried setting localStorage key “${key}” even though environment is not a client`
+        );
+        return;
+      }
       try {
-        const valueToStore = newValue instanceof Function ? newValue(value) : newValue;
-        setValue(valueToStore);
-        window.localStorage.setItem(key, JSON.stringify(valueToStore));
+        // Use a functional update to get the latest state value
+        setStoredValue((currentValue) => {
+          const valueToStore =
+            value instanceof Function ? value(currentValue) : value;
+          // Persist to localStorage
+          window.localStorage.setItem(key, JSON.stringify(valueToStore));
+          return valueToStore;
+        });
       } catch (error) {
         console.error(`Error setting localStorage key “${key}”:`, error);
       }
-    }
-  }, [key, value]);
-  
-  useEffect(() => {
-    if (isInitialized) {
-        if (typeof window !== 'undefined') {
-            try {
-                window.localStorage.setItem(key, JSON.stringify(value));
-            } catch (error) {
-                console.error(`Error setting localStorage key “${key}”:`, error);
-            }
-        }
-    }
-  }, [key, value, isInitialized]);
+    },
+    [key]
+  );
 
-
-  return [value, setStoredValue] as const;
+  return [storedValue, setValue] as const;
 }
 
 export default useLocalStorage;
