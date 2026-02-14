@@ -129,12 +129,12 @@ export default function DeadlineTracker() {
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button variant="outline" className={cn("h-11 w-[200px] justify-start text-right font-normal", !field.value && "text-muted-foreground")}>
-                                <AlarmClock className="ml-2 h-4 w-4" />
+                                <AlarmClock className="me-2 h-4 w-4" />
                                 {field.value ? format(field.value, 'PPP', { locale: ar }) : <span>اختر تاريخ</span>}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0">
-                            <Calendar mode="single" selected={field.value} onSelect={field.onChange} initialFocus />
+                            <Calendar mode="single" selected={field.value} onSelect={field.onChange} initialFocus locale={ar} />
                         </PopoverContent>
                     </Popover>
                 )}

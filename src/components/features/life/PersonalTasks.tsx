@@ -59,7 +59,7 @@ export default function PersonalTasks() {
                       layout
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
+                      exit={{ opacity: 0, x: 20 }}
                       transition={{ duration: 0.2 }}
                       className="flex items-center gap-3 p-3 rounded-lg bg-background"
                     >
