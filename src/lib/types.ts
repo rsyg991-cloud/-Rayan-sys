@@ -30,10 +30,3 @@ export interface HealthInfo {
   targetWeight: number; // in kg
   history: WeightEntry[];
 }
-
-export interface Match {
-  id: string;
-  opponent: string;
-  competition: string;
-  date: string; // ISO string
-}
