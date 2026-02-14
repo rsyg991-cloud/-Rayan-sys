@@ -6,6 +6,11 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Hayati: Personal Digital Planner',
   description: 'Your life, organized.',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'RayanSys',
+  },
 };
 
 export default function RootLayout({
