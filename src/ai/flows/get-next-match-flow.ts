@@ -3,14 +3,11 @@
  * @fileOverview A flow for getting Al-Hilal's next match information.
  *
  * - getNextAlHilalMatch - A function that returns the next match for Al-Hilal.
- * - Match - The return type for the getNextAlHilalMatch function.
  */
 
 import { ai } from '@/ai/genkit';
 import { z } from 'zod';
 import type { Match } from '@/lib/types';
-
-export { type Match };
 
 const NextMatchOutputSchema = z.object({
     id: z.string(),
