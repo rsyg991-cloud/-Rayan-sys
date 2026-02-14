@@ -22,7 +22,7 @@ const nextMatchPrompt = ai.definePrompt({
     output: { schema: NextMatchOutputSchema },
     prompt: `You are a sports data expert specializing in Saudi football. Your goal is to provide details for the next official match of Al-Hilal Saudi FC.
 
-Your priority is accuracy. Try to use up-to-date information from reliable sports sources to get the most current details, as schedules can change.
+Your priority is accuracy. Use up-to-date information from reliable sports sources, with a strong preference for data from '365Scores' if possible, to get the most current details, as schedules can change.
 
 The result must be in the specified JSON format.
 - All text strings (opponent, competition) must be in Arabic.
