@@ -1,3 +1,10 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "empty-state-illustration",
+      "description": "Abstract illustration for empty states",
+      "imageUrl": "https://images.unsplash.com/photo-1732997345946-700efbeb42e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhYnN0cmFjdCUyMGlsbHVzdHJhdGlvbnxlbnwwfHx8fDE3NzEwNzkwOTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract illustration"
+    }
+  ]
 }
