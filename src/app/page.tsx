@@ -2,6 +2,7 @@ import AcademicTasks from '@/components/features/university/AcademicTasks';
 import DeadlineTracker from '@/components/features/university/DeadlineTracker';
 import HabitTracker from '@/components/features/life/HabitTracker';
 import PersonalTasks from '@/components/features/life/PersonalTasks';
+import HealthTracker from '@/components/features/life/HealthTracker';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         {/* Life Zone */}
         <div className="space-y-6 lg:space-y-8">
            <h2 className="text-2xl font-bold font-headline text-center text-accent">🏠 منطقة الحياة</h2>
+          <HealthTracker />
           <HabitTracker />
           <PersonalTasks />
         </div>

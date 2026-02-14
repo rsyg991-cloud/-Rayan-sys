@@ -19,3 +19,15 @@ export interface Habit {
   streak: number;
   lastCompleted: string | null; // ISO date string
 }
+
+export interface WeightEntry {
+  date: string; // ISO string
+  weight: number;
+}
+
+export interface HealthInfo {
+  height: number; // in cm
+  initialWeight: number; // in kg
+  targetWeight: number; // in kg
+  history: WeightEntry[];
+}
