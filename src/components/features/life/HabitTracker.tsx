@@ -1,7 +1,7 @@
 "use client";
 import { isToday, isYesterday } from 'date-fns';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Fire } from 'lucide-react';
+import { Flame } from 'lucide-react';
 import useLocalStorage from '@/hooks/use-local-storage';
 import type { Habit } from '@/lib/types';
 import { BentoCard } from '../shared/BentoCard';
@@ -47,7 +47,7 @@ const HabitItem = ({ habit, onUpdate }: { habit: Habit; onUpdate: (id: string) =
                         aria-label={`Complete ${habit.name}`}
                         className="p-2"
                     >
-                        <Fire className={cn('h-7 w-7 transition-colors', flameColor())} />
+                        <Flame className={cn('h-7 w-7 transition-colors', flameColor())} />
                     </motion.button>
                 </TooltipTrigger>
                 <TooltipContent>
