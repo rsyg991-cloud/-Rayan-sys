@@ -32,7 +32,7 @@ export default function GoalsTracker() {
   };
 
   return (
-    <BentoCard title="الأهداف" contentClassName="p-0">
+    <BentoCard title="اهداف نهاية الاسبوع" contentClassName="p-0">
       <div className="flex flex-col h-full">
         <form onSubmit={addGoal} className="flex gap-2 p-4 border-b">
           <Input
