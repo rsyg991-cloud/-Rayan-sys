@@ -11,32 +11,33 @@ export default function DateTimeWidget() {
     const updateDates = () => {
       const now = new Date();
       
-      // Time
-      setTime(new Intl.DateTimeFormat('ar-SA', {
+      // Time with English numerals and no seconds
+      setTime(new Intl.DateTimeFormat('en-US', {
         hour: 'numeric',
         minute: 'numeric',
-        second: 'numeric',
         hour12: true,
       }).format(now));
 
-      // Gregorian Date
+      // Gregorian Date with English numerals
       setGregorianDate(new Intl.DateTimeFormat('ar-SA', {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
         day: 'numeric',
+        numberingSystem: 'latn',
       }).format(now));
 
-      // Hijri Date
+      // Hijri Date with English numerals
       setHijriDate(new Intl.DateTimeFormat('ar-SA-u-ca-islamic', {
         day: 'numeric',
         month: 'long',
         year: 'numeric',
+        numberingSystem: 'latn',
       }).format(now));
     };
 
     updateDates(); // Initial call
-    const timerId = setInterval(updateDates, 1000); // Update every second
+    const timerId = setInterval(updateDates, 1000); // Update every second to keep time live
 
     return () => clearInterval(timerId); // Cleanup on unmount
   }, []);
