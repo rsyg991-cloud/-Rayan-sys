@@ -31,6 +31,7 @@ export async function estimateCalories(input: EstimateCaloriesInput): Promise<Es
 
 const prompt = ai.definePrompt({
   name: 'estimateCaloriesPrompt',
+  model: 'googleai/gemini-1.5-flash',
   input: {schema: EstimateCaloriesInputSchema},
   output: {schema: EstimateCaloriesOutputSchema},
   prompt: `You are an expert nutritionist. Analyze the image of the meal provided and identify all the food items.
